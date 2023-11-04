@@ -472,3 +472,38 @@ const twoSumClosest = (nums, target) => {
 
 module.exports = {twoSumClosest};
 
+/** Write a function that calculates x^y, where x is given as the base and y is given as the power.
+ *
+ * Example:
+ * pow(2,4) => 2^4 = 16
+ * Rational: 2 * 2 * 2 * 2 = 16
+ *
+ * Extension: Use recursion
+ */
+
+function pow(base, power) {
+  let result  = 1;
+  for ( let i = 0; i < power; i++){
+    result *= base
+  }
+  return result
+}
+
+console.log(pow(2, 6))
+
+/**
+ * Extension: Use recursion to solve the problem in O(n) time complexity -> Linear time complexity
+ */
+
+function powRecurse(base, power, result = 1) {
+  if(power < 1) return result;
+ 
+  result = result * base;
+  
+  return powRecurse(base, power - 1, result)
+
+}
+console.log(powRecurse(2, 6))
+
+
+module.exports = { pow, powRecurse };
