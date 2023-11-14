@@ -552,7 +552,7 @@ DoublyLinkedList.prototype.add = function (val) {
     } else {
       searchNode.next = node;
       node.prev = searchNode;
-      return
+      return add this
     }
   }
   
