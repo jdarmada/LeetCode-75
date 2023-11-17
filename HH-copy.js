@@ -253,6 +253,9 @@ input array? How would you handle this?
 */
 
 const getAllProducts = array => {
+  for (let i = 0; i < array.length; i++){
+    
+  }
   
 };
 
