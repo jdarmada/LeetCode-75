@@ -555,7 +555,7 @@ DoublyLinkedList.prototype.add = function (val) {
     } else {
       searchNode.next = node;
       node.prev = searchNode;
-      return add this
+      return add 
     }
   }
   
@@ -615,3 +615,6 @@ const twoSum = (arr) => {
   }
 }
 
+const newArrr = [5, 6, 4, 7];
+
+console.log(twoSum(newArrr))
