@@ -610,7 +610,7 @@ const twoSum = (arr) => {
       if(arr[i] + arr[j]) {
         return true
       }
-      return false
+      
     }
   }
 }
