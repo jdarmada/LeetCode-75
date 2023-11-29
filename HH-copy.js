@@ -252,12 +252,28 @@ input array? How would you handle this?
 
 */
 
-const getAllProducts = array => {
-  for (let i = 0; i < array.length; i++){
-
+function findAllProductsExceptOne(nums) {
+  // Check if the array has at least two elements
+  if (nums.length < 2) {
+      throw new Error("Array must contain at least two elements");
   }
-  
-};
+
+  // Calculate the total product of all elements in the array
+  let totalProduct = 1;
+  for (let num of nums) {
+      totalProduct *= num;
+  }
+
+  // Initialize an array to store the results
+  let result = [];
+
+  // Calculate the product for each element by dividing the total product by that element
+  for (let num of nums) {
+      result.push(totalProduct / num);
+  }
+
+  return result;
+}
 
 module.exports = { getAllProducts };
 
