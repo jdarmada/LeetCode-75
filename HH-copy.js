@@ -305,9 +305,41 @@ of 6.
 
 */
 
-const subsetSumClosest = (nums, target) => {
-  
-};
+function smallestDifferenceSubsetSum(nums, target) {
+  const n = nums.length;
+
+  // Find the maximum possible sum using all elements
+  const maxSum = nums.reduce((acc, num) => acc + Math.abs(num), 0);
+
+  // Create a 2D array to store the subset sum information
+  const dp = Array.from({ length: n + 1 }, () => Array(maxSum + 1).fill(false));
+
+  // Initialize the base case
+  for (let i = 0; i <= n; i++) {
+      dp[i][0] = true;
+  }
+
+  // Fill the dp array
+  for (let i = 1; i <= n; i++) {
+      for (let j = 1; j <= maxSum; j++) {
+          dp[i][j] = dp[i - 1][j] || (j >= Math.abs(nums[i - 1]) && dp[i - 1][j - Math.abs(nums[i - 1])]);
+      }
+  }
+
+  // Find the closest subset sum to the target
+  let closestSum = 0;
+  for (let j = target; j <= maxSum; j++) {
+      if (dp[n][j]) {
+          closestSum = j;
+          break;
+      }
+  }
+
+  // Calculate the smallest absolute difference
+  const smallestDifference = Math.abs(target - closestSum);
+
+  return smallestDifference;
+}
 
 /*
 
