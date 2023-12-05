@@ -381,9 +381,30 @@ A solution set is:
 
 */
 
-const generateCombinations = (nums, target) => {
-  
-};
+function combinationSum(candidates, target) {
+  const result = [];
+
+  function backtrack(start, currentCombination, remainingTarget) {
+    if (remainingTarget === 0) {
+      result.push([...currentCombination]);
+      return;
+    }
+
+    for (let i = start; i < candidates.length; i++) {
+      if (candidates[i] > remainingTarget) {
+        // Skip if the current candidate is greater than the remaining target
+        continue;
+      }
+
+      currentCombination.push(candidates[i]);
+      backtrack(i, currentCombination, remainingTarget - candidates[i]);
+      currentCombination.pop();
+    }
+  }
+
+  backtrack(0, [], target);
+  return result;
+}
 
 module.exports = {subsetSumClosest, generateCombinations};
 
