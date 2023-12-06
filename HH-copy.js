@@ -424,9 +424,31 @@ module.exports = {subsetSumClosest, generateCombinations};
  * Hint: Think about the length of the string and how that relates to the frequencies of the characters
  */
 
-const permPalin = str => {
+function canPermutePalindrome(s) {
+  const charFrequency = new Map();
 
-};
+  // Count the frequency of each character
+  for (const char of s) {
+    charFrequency.set(char, (charFrequency.get(char) || 0) + 1);
+  }
+
+  let oddCount = 0;
+
+  // Check the frequency of each character
+  for (const frequency of charFrequency.values()) {
+    if (frequency % 2 !== 0) {
+      oddCount++;
+
+      // If more than one character has an odd frequency, it can't be a palindrome
+      if (oddCount > 1) {
+        return false;
+      }
+    }
+  }
+
+  // If oddCount is at most 1, it's possible to form a palindrome
+  return true;
+}
 
 /* 
  * Extension: Solve in constant space complexity.
