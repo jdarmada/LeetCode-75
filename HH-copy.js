@@ -454,6 +454,25 @@ function canPermutePalindrome(s) {
  * Extension: Solve in constant space complexity.
  */
 const permPalinAdvanced = str => {
+   // Count the frequency of each character
+   for (const char of s) {
+    charFrequency.set(char, (charFrequency.get(char) || 0) + 1);
+  }
+
+  let oddCount = 0;
+
+  // Check the frequency of each character
+  for (const frequency of charFrequency.values()) {
+    if (frequency % 2 !== 0) {
+      oddCount++;
+
+      // If more than one character has an odd frequency, it can't be a palindrome
+      if (oddCount > 1) {
+        return false;
+      }
+    }
+  }
+
 
 };
 
