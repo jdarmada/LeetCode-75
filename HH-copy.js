@@ -510,9 +510,46 @@ that the grid will have at least one element.
 
 */
 
-const numIslands = grid => {
-  
-};
+function numIslands(grid) {
+  if (!grid || grid.length === 0) {
+      return 0;
+  }
+
+  const rows = grid.length;
+  const cols = grid[0].length;
+  let islandCount = 0;
+
+  function dfs(row, col) {
+      if (
+          row < 0 ||
+          col < 0 ||
+          row >= rows ||
+          col >= cols ||
+          grid[row][col] === "0"
+      ) {
+          return;
+      }
+
+      grid[row][col] = "0"; // Mark the current cell as visited
+
+      // Explore adjacent cells in all four directions
+      dfs(row + 1, col);
+      dfs(row - 1, col);
+      dfs(row, col + 1);
+      dfs(row, col - 1);
+  }
+
+  for (let i = 0; i < rows; i++) {
+      for (let j = 0; j < cols; j++) {
+          if (grid[i][j] === "1") {
+              islandCount++;
+              dfs(i, j);
+          }
+      }
+  }
+
+  return islandCount;
+}
 
 module.exports = {numIslands};
 /*
