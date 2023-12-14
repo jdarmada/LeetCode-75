@@ -628,9 +628,34 @@ O(n) time.
 
 */
 
-const twoSumClosest = (nums, target) => {
-  
-};
+function closestSumToTarget(nums, target) {
+  if (!nums || nums.length < 2) {
+      return null; // Invalid input
+  }
+
+  nums.sort((a, b) => a - b);
+
+  let closestSum = Infinity;
+  let left = 0;
+  let right = nums.length - 1;
+
+  while (left < right) {
+      const currentSum = nums[left] + nums[right];
+      const currentDiff = Math.abs(currentSum - target);
+
+      if (currentDiff < Math.abs(closestSum - target)) {
+          closestSum = currentSum;
+      }
+
+      if (currentSum < target) {
+          left++;
+      } else {
+          right--;
+      }
+  }
+
+  return closestSum;
+}
 
 module.exports = {twoSumClosest};
 
