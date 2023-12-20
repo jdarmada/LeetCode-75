@@ -649,9 +649,7 @@ function closestSumToTarget(nums, target) {
 
       if (currentSum < target) {
           left++;
-      } else {
-          right--;
-      }
+      } \
   }
 
   return closestSum;
