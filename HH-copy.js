@@ -90,9 +90,32 @@ whole array, the array will end up being sorted.
 
 */
 
-const selectionSort = array => {
-  
-};
+function selectionSort(arr) {
+  if (!arr || arr.length <= 1) {
+      return arr; // Already sorted or invalid input
+  }
+
+  const n = arr.length;
+
+  for (let i = 0; i < n - 1; i++) {
+      let minIndex = i;
+
+      // Find the index of the minimum element in the unsorted part of the array
+      for (let j = i + 1; j < n; j++) {
+          if (arr[j] < arr[minIndex]) {
+              minIndex = j;
+          }
+      }
+
+      // Swap the found minimum element with the first element
+      const temp = arr[i];
+      arr[i] = arr[minIndex];
+      arr[minIndex] = temp;
+  }
+
+  return arr;
+}
+
 
 /*
 
@@ -649,7 +672,7 @@ function closestSumToTarget(nums, target) {
 
       if (currentSum < target) {
           left++;
-      } \
+      } 
   }
 
   return closestSum;
