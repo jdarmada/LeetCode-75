@@ -230,9 +230,30 @@ characters. How do we keep track of this "window"?
 
 */
 
-const substringNonrepeating = str => {
-  
-};
+function lengthOfLongestSubstring(s) {
+  const n = s.length;
+  let maxLength = 0;
+  let start = 0;
+  const charIndexMap = {};
+
+  for (let end = 0; end < n; end++) {
+    const currentChar = s[end];
+
+    // If the character is already in the substring, update the start pointer
+    if (charIndexMap[currentChar] !== undefined && charIndexMap[currentChar] >= start) {
+      start = charIndexMap[currentChar] + 1;
+    }
+
+    // Update the character's index in the map
+    charIndexMap[currentChar] = end;
+
+    // Update the maximum length of the substring
+    maxLength = Math.max(maxLength, end - start + 1);
+  }
+
+  return maxLength;
+}
+
 
 
 /*
