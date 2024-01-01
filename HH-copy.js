@@ -286,9 +286,33 @@ Given n = 0, a solution set is:
 
 */
 
-const generateParentheses = n => {
-  
-};
+function generateParenthesis(n) {
+  const result = [];
+
+  // Helper function to generate parentheses recursively
+  function generate(current, open, close) {
+    // Base case: if both open and close are used up, add the combination to the result
+    if (open === 0 && close === 0) {
+      result.push(current);
+      return;
+    }
+
+    // Add an open parenthesis if there are remaining open parentheses
+    if (open > 0) {
+      generate(current + '(', open - 1, close);
+    }
+
+    // Add a close parenthesis if it can match with an open parenthesis
+    if (close > open) {
+      generate(current + ')', open, close - 1);
+    }
+  }
+
+  // Start the recursion with an empty string and n pairs of parentheses
+  generate('', n, n);
+
+  return result;
+}
 
 
 /*
