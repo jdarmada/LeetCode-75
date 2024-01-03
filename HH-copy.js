@@ -178,9 +178,31 @@ Input: 'finding a needle in a haystack', 'lein'
 Output: false
 */
 
-const needleInHaystack = (string, substring) => {
+function findSubstring(str, target) {
+  const n = str.length;
+  const m = target.length;
 
-};
+  // Iterate through the main string
+  for (let i = 0; i <= n - m; i++) {
+    let found = true;
+
+    // Check if the target substring matches the current substring of the main string
+    for (let j = 0; j < m; j++) {
+      if (str[i + j] !== target[j]) {
+        found = false;
+        break;
+      }
+    }
+
+    // If the target substring is found, return true
+    if (found) {
+      return true;
+    }
+  }
+
+  // If the target substring is not found, return false
+  return false;
+}
 
 /*
 Extension: Now imagine the target substring and string both might have underscores '_'.
